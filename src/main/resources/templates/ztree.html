@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>zTree</title>
+<link href="3rdFrwk/ztree/css/metroStyle/metroStyle.css"
+	rel="stylesheet">
+</head>
+<body>
+
+	<ul id="tree" class="ztree">
+
+
+	</ul>
+
+	<script type="text/javascript" src="3rdFrwk/jquery/jquery-3.3.1.js"></script>
+	<script type="text/javascript"
+		src="3rdFrwk/ztree/js/jquery.ztree.all.js"></script>
+
+	<script type="text/javascript">
+$(()=>{
+	var settings = {
+			view: {
+				selectedMulti: false,
+			}
+	};
+	var nodes = [
+		{"name":"网站导航", open:true,dept_level:5, dept:"GPS",
+			children: [
+			{ "name":"google", dept_level:6,dept:'GG',/* "url":"http://g.cn", "target":"_blank" */},
+			{ "name":"baidu",dept_level:6,dept:'PP', /* "url":"http://baidu.com", "target":"_blank" */},
+			{ "name":"sina", dept_level:6,dept:'AA',/* "url":"http://www.sina.com.cn", "target":"_blank" */}
+			]
+		}
+	];
+	zTreeObj = $.fn.zTree.init($("#tree"), settings, nodes);
+	
+	console.log("zTreeObj=",zTreeObj);
+	console.log(zTreeObj.setting);
+	var treeObj = $.fn.zTree.getZTreeObj("tree");
+	var newNode = {name:"newNode1"};
+	newNode = treeObj.addNodes(null, newNode);//new root
+	console.log("add new node = ",newNode);
+	var treeObj = $.fn.zTree.getZTreeObj("tree");
+	var newNodes = [{name:"newNode1"}, {name:"newNode2"}, {name:"newNode3"}];
+	newNodes = treeObj.addNodes(null, newNodes);
+	console.log("add new nodes = ",newNodes);
+	//treeObj.destroy();
+	var treeObj = $.fn.zTree.getZTreeObj("tree");
+	var nodes = treeObj.getNodes();
+	treeObj.copyNode(nodes[0], nodes[1], "before");
+	/* var treeObj = $.fn.zTree.getZTreeObj("tree");
+	var nodes = treeObj.getSelectedNodes();
+	for (var i=0, l=nodes.length; i < l; i++) {
+		treeObj.checkNode(nodes[i], true, true);
+	} */
+	
+	/* var treeObj = $.fn.zTree.getZTreeObj("tree");
+	treeObj.cancelSelectedNode();
+ */
+ /* var treeObj = $.fn.zTree.getZTreeObj("tree");
+ var nodes = treeObj.getSelectedNodes();
+ if (nodes.length>0) { 
+ 	treeObj.cancelSelectedNode(nodes[0]);
+ } */
+ 
+ var treeObj = $.fn.zTree.getZTreeObj("tree");
+ var nodes = treeObj.getSelectedNodes();
+ if (nodes.length>0) {
+ 	treeObj.expandNode(nodes[0], true, true, true);
+ }
+ var nodes = treeObj.getChangeCheckedNodes();
+ console.log(nodes);
+ 
+ var nodes = treeObj.getNodeByParam("baidu", 1, null);
+ console.log(nodes);
+ var node = treeObj.getNodeByTId("tree_10");
+ console.log(node);
+ 
+ var treeObj = $.fn.zTree.getZTreeObj("tree");
+ var nodes = treeObj.getSelectedNodes();
+ if (nodes.length>0) {
+ 	var index = treeObj.getNodeIndex(nodes[0]);
+ 	console.log(index);
+ }
+ 
+ function filter(node) {
+	    return (/* node.level == 2 &&  */node.name.indexOf("baid")>-1);
+	}
+	
+	var treeObj = $.fn.zTree.getZTreeObj("tree");
+	var node = treeObj.getNodesByFilter(filter, true); // 仅查找一个节点
+	console.log(node);
+	var nodes = treeObj.getNodesByFilter(filter); // 查找节点集合
+	console.log(nodes);
+	//查找 name = "test" 的节点数据
+	var treeObj = $.fn.zTree.getZTreeObj("tree");
+	var nodes = treeObj.getNodesByParam("name", "baidu", null);
+ 	console.log(nodes);
+ 	
+ 	//查找 name 包含 "test" 的节点数据
+ 	var treeObj = $.fn.zTree.getZTreeObj("tree");
+ 	var nodes = treeObj.getNodesByParamFuzzy("name", "bai", null);
+ 	console.log(nodes);
+ 	//treeObj.hideNodes(nodes[0].children);
+ 	console.log(treeObj.transformToArray(treeObj.getNodes()));
+ 	console.log(treeObj.transformTozTreeNodes(treeObj.getNodes()));
+ 	nodes = treeObj.getNodes();
+ 	nodes[0].name = "test";
+	treeObj.updateNode(nodes[0]);
+ });
+
+
+</script>
+</body>
+</html>
