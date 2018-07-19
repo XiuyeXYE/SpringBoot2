@@ -33,4 +33,8 @@ public class HelloHtmlController {
 	public String ztree() {
 		return "ztree";
 	}
+	@GetMapping("solarSystem")
+	public String solarSystem() {
+		return "SolarSystem";
+	}
 }

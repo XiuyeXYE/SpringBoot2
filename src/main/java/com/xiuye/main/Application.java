@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.xiuye.config.Config;
-import com.xiuye.util.log.LogUtil;
 
 @SpringBootApplication
 @ImportAutoConfiguration(Config.class)

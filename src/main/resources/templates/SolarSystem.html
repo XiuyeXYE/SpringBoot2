@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Spring Boot</title>
+<link href="3rdFrwk/ztree/css/metroStyle/metroStyle.css"
+	rel="stylesheet">
+<link href="css/SolarSystem.css" rel="stylesheet">
+</head>
+<body>
+
+	<h1 style="color: green;">Ztree Fuzzy Searching</h1>
+	<div
+		style="border-radius: 3px; position: relative; width: 548px; background-color: #ccc; padding: 5px">
+		<input id="searchBox" style="padding-left:10px;
+		padding-right:10px;width: 500px;
+		 border-radius: 10px;border-style:inset;
+		 outline: none;" oninput="ztree_search_nodes();"
+			placeholder="Searching Planet in SolarSystem"><span
+			class="searchIcon"></span>
+	</div>
+	<div>
+		<ul id="tree" class="ztree">
+
+		</ul>
+	</div>
+
+
+
+	<script type="text/javascript" src="3rdFrwk/jquery/jquery-3.3.1.js"></script>
+	<script type="text/javascript"
+		src="3rdFrwk/ztree/js/jquery.ztree.all.js"></script>
+	<script type="text/javascript" src="js/SolarSystem.js"></script>
+</body>
+</html>
