@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>zTree</title>
+<link href="css/ladder.css" rel="stylesheet">
+</head>
+<body>
+
+<div>
+	<div id="tab1" class="ladder ladder_selected"><span class="position_center">Tab1-Test1</span></div>
+	<div id="tab2" class="ladder"><span class="position_center">Tab2-Test2</span></div>
+</div>
+
+	<script type="text/javascript" src="3rdFrwk/jquery/jquery-3.3.1.js"></script>
+
+	<script type="text/javascript">
+		$(()=>{
+			$("#tab1").click((e)=>{
+				$("#tab1").addClass("ladder_selected");
+				$("#tab2").removeClass("ladder_selected");
+			});
+			$("#tab2").click((e)=>{
+				$("#tab2").addClass("ladder_selected");
+				$("#tab1").removeClass("ladder_selected");
+			});
+		});
+	</script>
+</body>
+</html>

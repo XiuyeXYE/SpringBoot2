@@ -37,4 +37,8 @@ public class HelloHtmlController {
 	public String solarSystem() {
 		return "SolarSystem";
 	}
+	@GetMapping("ladder")
+	public String ladder() {
+		return "ladder";
+	}
 }
