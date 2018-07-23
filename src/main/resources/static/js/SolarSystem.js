@@ -1,8 +1,18 @@
 
 var setting = {
 		view: {
-			selectedMulti: false,
+			selectedMulti: true,
+			txtSelectedEnable: true,
+			autoCancelSelected: false,
+		},
+		edit: {
+			enable: true,
+			drag: {
+				isCopy: false,
+				isMove: true
+			}
 		}
+
 };
 var zTreeNodes = [
 	{"name":"太阳", 
