@@ -3,13 +3,22 @@ var setting = {
 		view: {
 			selectedMulti: true,
 			txtSelectedEnable: true,
-			autoCancelSelected: false,
+			autoCancelSelected: true,
 		},
+		
 		edit: {
 			enable: true,
 			drag: {
 				isCopy: false,
 				isMove: true
+			}
+		},
+		callback: {
+			onClick: (event, treeId, treeNode,clickFlag)=>{
+				let zObj = $.fn.zTree.getZTreeObj("tree");
+				zObj.selectNode(treeNode,true);
+				console.log(treeNode);
+				console.log(clickFlag);
 			}
 		}
 
@@ -212,4 +221,5 @@ function ztree_search_nodes(){
 }
 $(()=>{
 	var zTreeObj = $.fn.zTree.init($("#tree"), setting, zTreeNodes);
+	var zTreeObj = $.fn.zTree.init($("#tree2"), setting, zTreeNodes);
 });
