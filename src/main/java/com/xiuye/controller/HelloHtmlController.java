@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.xiuye.service.HelloService;
 
@@ -41,4 +42,28 @@ public class HelloHtmlController {
 	public String ladder() {
 		return "ladder";
 	}
+	
+	@GetMapping("grid")
+	public String grid() {
+		return "grid";
+	}
+	
+	
+	@PostMapping(value="JSONData.json")
+	public String gridJson() {
+		
+		return "JSONData.json";
+	}
+	
+	
+	
+	@PostMapping(value="JSONData2.json")
+	public String gridJson2() {
+		
+		return "JSONData";
+	}
+	
+	
+	
+	
 }
