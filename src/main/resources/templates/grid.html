@@ -46,24 +46,37 @@
 					{
 						name : 'id',
 						index : 'id',
-						width : 55
+						width : 55,
+						search:true,
+						stype:"text",
 					}, {
 						name : 'invdate',
 						index : 'invdate',
+						search:true,
+						stype:"text",
 						width : 90
 					}, {
 						name : 'name',
 						index : 'name asc, invdate',
+						search:true,
+						stype:"text",
 						width : 100
 					}, {
 						name : 'amount',
 						index : 'amount',
 						width : 80,
-						align : "right"
+						align : "right",
+							search:true,
+							stype:"text",
 					}, {
 						name : 'tax',
 						index : 'tax',
 						width : 80,
+						search:true,
+					    stype: "select",
+
+			               multiple:true, 
+			                searchoptions: { multiple:true, value: ":[All];ALFKI:ALFKI;ALFKI:ALFKI;ANATR:ANATR;ANTON:ANTON;AROUT:AROUT" },
 						align : "right"
 					}, {
 						name : 'total',
@@ -87,12 +100,21 @@
 				});
 		/*创建jqGrid的操作按钮容器*/
 		/*可以控制界面上增删改查的按钮是否显示*/
-		jQuery("#list2").jqGrid('navGrid', '#pager2', {
+		/* jQuery("#list2").jqGrid('navGrid', '#pager2', {
 			edit : false,
 			add : false,
 			del : false
-		});
-		});
+		});*/
+		jQuery("#list2").jqGrid('navGrid','#pager2',
+				{edit:true,add:true,del:true},
+				{},
+				{},
+				{},
+				{multipleSearch:true, multipleGroup:true, showQuery: true}
+				);
+		jQuery("#list2").jqGrid('filterToolbar',{searchOperators : true});
+		}); 
+		
 	</script>
 
 </body>
