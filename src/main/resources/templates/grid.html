@@ -47,33 +47,33 @@
 						name : 'id',
 						index : 'id',
 						width : 55,
-						search:true,
-						stype:"text",
+						/* search:true,
+						stype:"text", */
 					}, {
 						name : 'invdate',
 						index : 'invdate',
-						search:true,
-						stype:"text",
+						/* search:true,
+						stype:"text", */
 						width : 90
 					}, {
 						name : 'name',
 						index : 'name asc, invdate',
-						search:true,
-						stype:"text",
+						/* search:true,
+						stype:"text", */
 						width : 100
 					}, {
 						name : 'amount',
 						index : 'amount',
 						width : 80,
 						align : "right",
-							search:true,
-							stype:"text",
+							/* search:true,
+							stype:"text", */
 					}, {
 						name : 'tax',
 						index : 'tax',
 						width : 80,
-						search:true,
-					    stype: "select",
+					 search:true,
+					    stype: "select", 
 
 			               multiple:true, 
 			                searchoptions: { multiple:true, value: ":[All];ALFKI:ALFKI;ALFKI:ALFKI;ANATR:ANATR;ANTON:ANTON;AROUT:AROUT" },
@@ -89,6 +89,8 @@
 						width : 150,
 						sortable : false
 					} ],
+					 multiselect : true,
+					 //multikey : "ctrlKey",
 					rowNum : 10,//一页显示多少条
 					rowList : [ 10, 20, 30 ],//可供用户选择一页显示多少条
 					pager : '#pager2',//表格页脚的占位符(一般是div)的id
@@ -96,8 +98,146 @@
 					sortorder : "desc",//排序方式,可选desc,asc
 					mtype : "post",//向后台请求数据的ajax的类型。可选post,get
 					viewrecords : true,
-					caption : "JSON Example"//表格的标题名字
+					caption : "JSON Example",//表格的标题名字
+					subGrid : true,
+					  //editurl : ctx+"/RowEditing",
+					 subGridRowExpanded : function(subgrid_id, row_id) {
+				          // we pass two parameters 
+				          // subgrid_id is a id of the div tag created whitin a table data 
+				          // the id of this elemenet is a combination of the "sg_" + id of the row 
+				          // the row_id is the id of the row 
+				          // If we wan to pass additinal parameters to the url we can use 
+				          // a method getRowData(row_id) - which returns associative array in type name-value
+				          // here we can easy construct the flowing
+				          /* var subgrid_table_id, pager_id;
+				          subgrid_table_id = subgrid_id + "_t";
+				          pager_id = "p_" + subgrid_table_id;
+				          $("#" + subgrid_id).html(
+				              "<table id='" + subgrid_table_id
+				                  + "' class='scroll'></table><div id='"
+				                  + pager_id + "' class='scroll'></div>");
+				          jQuery("#" + subgrid_table_id).jqGrid(
+				              {
+				                url : ctx+"/SubGrid?q=2&id=" + row_id,
+				                datatype : "json",
+				                colNames : [ 'No', 'Item', 'Qty', 'Unit','Line Total' ],
+				                colModel : [ 
+				                             {name : "num",  index : "num",width : 80,key : true}, 
+				                             {name : "item",index : "item",  width : 130}, 
+				                             {name : "qty",index : "qty",width : 70,align : "right"}, 
+				                             {name : "unit",index : "unit",width : 70,align : "right"}, 
+				                             {name : "total",index : "total",width : 70,align : "right",sortable : false} 
+				                           ],
+				                rowNum : 20,
+				                pager : pager_id,
+				                sortname : 'num',
+				                sortorder : "asc",
+				                height : '100%'
+				              });
+				          jQuery("#" + subgrid_table_id).jqGrid('navGrid',
+				              "#" + pager_id, {
+				                edit : false,
+				                add : false,
+				                del : false
+				              }); */
+				        },
+				      /*   jsonReader : {
+				            repeatitems : true,
+				          //cell : "cell",
+				            id : "0"
+				          }, */
+				         /*  loadError : function(xhr, st, err) {
+				              jQuery("#rsperror").html(
+				                  "Type: " + st + "; Response: " + xhr.status + " "
+				                      + xhr.statusText);
+				            } */
+				          /* afterInsertRow : function(rowid, aData) {
+				              switch (aData.name) {
+				              case 'Client 1':
+				                jQuery("#ainsrow").jqGrid('setCell', rowid, 'total',
+				                    '', {
+				                      color : 'green'
+				                    });
+				                break;
+				              case 'Client 2':
+				                jQuery("#ainsrow").jqGrid('setCell', rowid, 'total',
+				                    '', {
+				                      color : 'red'
+				                    });
+				                break;
+				              case 'Client 3':
+				                jQuery("#ainsrow").jqGrid('setCell', rowid, 'total',
+				                    '', {
+				                      color : 'blue'
+				                    });
+				                break;
+				              } */
+				          //hiddengrid : true
+				          //toolbar : [ true, "top" ],
+				           /* $("#t_toolbar2")
+  .append(
+      "<input type='button' value='Click Me' style='height:20px;font-size:-3'/>");
+  $("input", "#t_toolbar2").click(function() { */
+				        subGridRowColapsed : function(subgrid_id, row_id) {
+				          // this function is called before removing the data 
+				          //var subgrid_table_id; 
+				          //subgrid_table_id = subgrid_id+"_t"; 
+				          //jQuery("#"+subgrid_table_id).remove();
+				        },
+				        /* treeGrid: true,
+				        ExpandColumn : 'name', */
+				       /*  subGridUrl : ctx+'/SubGrid',
+				        subGridModel : [ {
+				          name : [ 'No', 'Item', 'Qty', 'Unit', 'Line Total' ],
+				          width : [ 55, 200, 80, 80, 80 ],
+				          params : [ 'invdate' ]
+				        } ], 
+				        
+				        complete: function(jsondata,stat){
+				            if(stat=="success") {
+				              var thegrid = jQuery("#listdt")[0];
+				              thegrid.addJSONData(eval("("+jsondata.responseText+")"))
+				            }
+				            rownumbers: true,
+				            rownumWidth: 40,
+				        */
 				});
+  
+  /*
+  
+   jQuery("#navgrid3").jqGrid('navGrid','#pagernav3',
+  {view:true}, //options
+  {height:300,reloadAfterSubmit:false, jqModal:false, closeOnEscape:true, bottominfo:"Fields marked with (*) are required"}, // edit options
+  {height:300,reloadAfterSubmit:false,jqModal:false, closeOnEscape:true,bottominfo:"Fields marked with (*) are required", closeAfterAdd: true}, // add options
+  {reloadAfterSubmit:false,jqModal:false, closeOnEscape:true}, // del options
+  {closeOnEscape:true}, // search options
+  {height:300,jqModal:false,closeOnEscape:true} // view options
+  //formatter
+  name:'id',index:'id', width:55,formatter: 'integer'}, frozen : true
+  jQuery("#gfrc1").jqGrid('setFrozenColumns');
+  //column colspan
+  jQuery("#ghcs").jqGrid('setGroupHeaders', {
+    useColSpanStyle: false, 
+    groupHeaders:[
+    {startColumnName: 'amount', numberOfColumns: 3, titleText: '<em>Price</em>'},
+    {startColumnName: 'closed', numberOfColumns: 2, titleText: 'Shiping'}
+    ]  
+  });
+  jQuery("#gfrc2").jqGrid('setGroupHeaders', {
+	    useColSpanStyle: false, 
+	    groupHeaders:[
+	    {startColumnName: 'id', numberOfColumns: 2, titleText: 'Client Details'}
+	    ]  
+	  });
+	  jQuery("#gfrc2").jqGrid('setFrozenColumns');
+  {name:'invdate',index:'invdate', width:80,formatter:'date'},
+  {name:'name',index:'name', width:90, formatter: 'link'},
+  {name:'amount',index:'amount', width:60, align:"right",formatter:'currency'},
+  {name:'tax',index:'tax', width:60, align:"right",formatter:'currency'},
+  {name:'total',index:'total', width:60,align:"right",formatter:'currency'},
+{name:'closed',index:'closed',width:55,align:'center',formatter:'checkbox'},
+  
+  */
 		/*创建jqGrid的操作按钮容器*/
 		/*可以控制界面上增删改查的按钮是否显示*/
 		/* jQuery("#list2").jqGrid('navGrid', '#pager2', {
@@ -105,15 +245,238 @@
 			add : false,
 			del : false
 		});*/
+		/*
+		1.hideCol(colname) - 可以根据一个给出的列名来隐藏一列。
+		2.showCol(colname) - 可以根据给出的列名来显示一列。
+		3.当表格在初始化中设置了colModel中的一个新属性hidden的时候，我们可以实现隐藏一列。
+		*/
+		//$("#list2").jqGrid().getDataIDs()
 		jQuery("#list2").jqGrid('navGrid','#pager2',
 				{edit:true,add:true,del:true},
 				{},
 				{},
 				{},
-				{multipleSearch:true, multipleGroup:true, showQuery: true}
-				);
-		jQuery("#list2").jqGrid('filterToolbar',{searchOperators : true});
+				 {multipleSearch:true, 
+					multipleGroup:true, showQuery: true} 
+				); 
+				
+		/* 
+		 jQuery("#setcols").jqGrid('setColumns');
+		
+		jQuery("#list2")  
+
+		.navGrid('#pager2',{edit:false,add:false,del:false,search:false})  
+
+		.navButtonAdd('#pager2',{  
+
+		   caption:"Add",   
+
+		   buttonicon:"ui-icon-add",   
+
+		   onClickButton: function(){   
+
+		     alert("Adding Row");  
+
+		   },   
+
+		   position:"last"  
+
+		})  
+
+		.navButtonAdd('#pager2',{  
+
+		   caption:"Del",   
+
+		   buttonicon:"ui-icon-del",   
+
+		   onClickButton: function(){   
+
+		      alert("Deleting Row");  
+
+		   },   
+
+		   position:"last"  
+
+		}); */
+				
+		/* var timeoutHnd;
+		var flAuto = false;
+		function doSearch(ev) {
+		  if (!flAuto)
+		    return;
+		  if (timeoutHnd)
+		    clearTimeout(timeoutHnd);
+		    timeoutHnd = setTimeout(gridReload, 500);
+		}
+		function gridReload() {
+		  var nm_mask = jQuery("#item_nm").val()||"";
+		  var cd_mask = jQuery("#search_cd").val()||"";
+		  jQuery("#bigset").jqGrid('setGridParam', {
+		    url : ctx+"/BigSet?nm_mask=" + nm_mask + "&cd_mask=" + cd_mask,
+		    page : 1
+		  }).trigger("reloadGrid");
+		}
+		function enableAutosubmit(state) {
+		  flAuto = state;
+		  jQuery("#submitButton").attr("disabled", state);
+		} */
+		//jQuery("#list13").jqGrid('setSelection', "13");
+		//edit
+		/* 
+		这个例子展示了使表格可编辑的基本步骤。这样做我们只需要3步: 
+			1.标记Grid的哪一列是可编辑的。这是通过设置一个新属性"editable:true"实现的。
+			默认grid中所有咧都是不可编辑的。
+			2.指定服务器需要接收发送的编辑数据的url。这是通过设置"editurl"选项来实现的。
+			3.使用这三个方法:editRow, saveRow, restoreRow。
+			editRow(rowid, keys) -接收两个参数:rowid-行的唯一id和列名。当我们调用此方法之后，我们可以使用Enter按键和Esc按键来保存和取消编辑状态。
+			saveRow( rowid, callback, url, extraparams) - rowid:行的唯一id，callback:自定义方法，他是当我们想服务器发送数据之后来接收数据的方法。url:当我们指定了此参数，我们就会覆盖editurl参数。extraparams :添加我们想服务器发送的一些参数。当这些数据格式化成 id=rowid&name=value...的时候，里面的name就是colModel的中的那么字段。
+			restoreRow( rowid) -在行编辑之前回复数据到初始值。
+			提示:由于安全原因，数据不会保存到服务器。
+			 jQuery("#ed1").click(function() {
+				    jQuery("#rowed1").jqGrid('editRow', "13");
+				    this.disabled = 'true';
+				    jQuery("#sved1,#cned1").attr("disabled", false);
+				  });
+				  jQuery("#sved1").click(function() {
+				    jQuery("#rowed1").jqGrid('saveRow', "13");
+				    jQuery("#sved1,#cned1").attr("disabled", true);
+				    jQuery("#ed1").attr("disabled", false);
+				  });
+				  jQuery("#cned1").click(function() {
+				    jQuery("#rowed1").jqGrid('restoreRow', "13");
+				    jQuery("#sved1,#cned1").attr("disabled", true);
+				    jQuery("#ed1").attr("disabled", false);
+				  });
+				  jQuery("#rowed4").jqGrid('saveRow', "13", checksave);
+				  function checksave(result) {
+					    if (result.responseText == "") {
+					      alert("Update is missing!");
+					      return false;
+					    }
+					    return true;
+					  }
+				  sorttype : "int",editable : true}, 
+	               editable : true,editoptions : {size : "20",maxlength : "30"}}, 
+	             editable : true,edittype : "checkbox",editoptions : {value : "Yes:No"}}, 
+	                editable : true,edittype : "select",editoptions : {value : "FE:FedEx;IN:InTime;TN:TNT;AR:ARAMEX"}}, 
+	                 sortable : false,editable : true,edittype : "textarea",editoptions : {rows : "2",cols : "10"}} 
+				  //set row column
+				  jQuery("#rowed2").jqGrid('setRowData', ids[i],
+		                    {
+		                      act : be + se + ce
+		                    });
+			
+				  jQuery("#rowed3").jqGrid('inlineNav', "#prowed3");
+				  
+				  
+				  jQuery('#rowed6').jqGrid('editRow', id, true, pickdates);
+				  function pickdates(id) {
+					    jQuery("#" + id + "_sdate", "#rowed6").datepicker({
+					      dateFormat : "yy-mm-dd"
+					    });
+					    
+					    
+					    //search
+					     jQuery("#search").jqGrid('searchGrid', {
+      sopt : [ 'cn', 'bw', 'eq', 'ne', 'lt', 'gt', 'ew' ]
+    });
+					    
+					    //edit row
+					      var gr = jQuery("#editgrid").jqGrid('getGridParam', 'selrow');
+    if (gr != null)
+      jQuery("#editgrid").jqGrid('editGridRow', gr, {
+        height : 300,
+        reloadAfterSubmit : false
+      });
+    else
+      alert("Please Select Row");
+    
+    //add row
+       jQuery("#editgrid").jqGrid('editGridRow', "new", {
+      height : 300,
+      reloadAfterSubmit : false
+    });
+				 
+    //del row
+     var gr = jQuery("#delgrid").jqGrid('getGridParam', 'selrow');
+    if (gr != null)
+      jQuery("#delgrid").jqGrid('delGridRow', gr, {
+        reloadAfterSubmit : false
+      });
+    else
+      alert("Please Select Row to delete!");
+    
+    
+    //navigator
+    jQuery("#navgrid").jqGrid('navGrid', '#pagernav', 
+      {}, //options
+      {height : 300,reloadAfterSubmit : false}, // edit options 
+      {height : 300,reloadAfterSubmit : false}, // add options
+      {reloadAfterSubmit : false}, // del options
+      {}// search options
+  );
+    
+    //header
+    jQuery("#shc").click(function() {
+		$("#method32").jqGrid('setLabel', "tax", "Tax Amt", {
+			'font-weight' : 'bold',
+			'font-style' : 'italic'
+		});
+	});
+    //cell 
+	jQuery("#scc").click(function() {
+		$("#method32").jqGrid('setCell', "12", "tax", "", {
+			'font-weight' : 'bold',
+			color : 'red',
+			'text-align' : 'center'
+		});
+	});
+    //clear data
+	jQuery("#cdat").click(function() {
+		$("#method32").jqGrid('clearGridData');
+	});
+    
+    //hide column
+     jQuery("#hcg").click(function() {
+    jQuery("#hideshow").jqGrid('hideCol', [ "amount", "tax" ]);
+  });
+  jQuery("#scg").click(function() {
+    jQuery("#hideshow").jqGrid('showCol', [ "amount", "tax" ]);
+  });
+  
+  jQuery("#custbut").jqGrid('navButtonAdd', '#pcustbut', {
+	    caption : "Edit",
+	    onClickButton : function() {
+	      var gsr = jQuery("#custbut").jqGrid('getGridParam', 'selrow');
+	      if (gsr) {
+	        jQuery("#custbut").jqGrid('GridToForm', gsr, "#order");
+	      } else {
+	        alert("Please select Row")
+	      }
+	    }
+	  });
+	  jQuery("#savedata").click(function() {
+	    var invid = jQuery("#invid").val();
+	    if (invid) {
+	      jQuery("#custbut").jqGrid('FormToGrid', invid, "#order");
+	    }
+	  });
+	  
+	  //colmodel params
+	  hidden : true,editable : true,editoptions : {size : 10},editrules : {edithidden : true,required : true,
+		  number : true,minValue : 40,maxValue : 100}
+	  
+	  
+	  jQuery("#gwidth").jqGrid('setGridWidth',nw);
+	  
+	  ableToGrid("#mytable");
+	  
+	  
+	  
+			*/
 		}); 
+		
+		
 		
 	</script>
 
