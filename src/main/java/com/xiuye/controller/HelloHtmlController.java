@@ -64,6 +64,10 @@ public class HelloHtmlController {
 	}
 	
 	
+	@GetMapping("timer")
+	public String timer() {
+		return "timer";
+	}
 	
 	
 }
