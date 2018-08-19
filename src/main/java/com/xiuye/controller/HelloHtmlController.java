@@ -69,5 +69,9 @@ public class HelloHtmlController {
 		return "timer";
 	}
 	
+	@GetMapping("echart")
+	public String echart() {
+		return "echart";
+	}
 	
 }
