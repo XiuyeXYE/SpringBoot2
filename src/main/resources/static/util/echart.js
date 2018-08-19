@@ -18,7 +18,7 @@ class Echart{
 		this.name = name;
 		this.divId = divId;
 		this.$dom = $("#"+this.divId);
-		this.chart = echarts.init(document.getElementById(this.divId));
+		this.chart = echarts.init(DomUtil.domById(this.divId));
 		this.initDefaultOption();
 		Echart.ALL_ECHARTS.set(this.name,this);
 	}
