@@ -20,7 +20,7 @@ class Echart{
 		this.$dom = $("#"+this.divId);
 		this.chart = echarts.init(DomUtil.domById(this.divId));
 		this.initDefaultOption();
-		Echart.ALL_ECHARTS.set(this.name,this);
+		Echart.add(this.name,this);
 	}
 	
 	initDefaultOption(){
@@ -133,6 +133,15 @@ class Echart{
 	}
 	static getEchartObjByName(n){
 		return Echart.ALL_ECHARTS.get(n);
+	}
+	static add(n,v){
+		return Echart.ALL_ECHARTS.set(n,v);
+	}
+	static remove(n){
+		return Echart.ALL_ECHARTS.delete(a);
+	}
+	static clear(){
+		return Echart.ALL_ECHARTS.clear();
 	}
 	
 	
