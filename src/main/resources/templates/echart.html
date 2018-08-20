@@ -9,35 +9,53 @@
 	<div id="echart_demo" style="height: 500px;"></div>
 
 	<script type="text/javascript" src="3rdFrwk/charts/echarts/echarts4.js"></script>
+	<script type="text/javascript" src="3rdFrwk/charts/zrender/zrender.js"></script>
 	<script type="text/javascript" src="3rdFrwk/jquery/jquery-3.3.1.js"></script>
+	
+	
+	<script type="text/javascript" src="util/log.js"></script>
 	<script type="text/javascript" src="util/type.js"></script>
 	<script type="text/javascript" src="util/dom.js"></script>
-	
+
 	<script type="text/javascript" src="util/echart.js"></script>
-<script type="text/javascript">
-	var echart = new Echart("echart_demo","echart_demo");
-	echart.setTitleName("Echart Demo");
-	echart.setLegendData(['销量']);
-	//echart.setSingleXAxisData(["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]);
-	echart.setMultiXAxis({
-		data:["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-	});
-	echart.setData([{
-		
-        name: '销量',
-        type: 'bar',
-        data: [5, 20, 36, 10, 10, 20],
-        itemStyle: {
-            normal: {
-               
-                label : {
-                    show: true, position: 'top'
-                }
-            }
-        },
-	
-    }]);
-	echart.show();
-</script>
+	<script type="text/javascript">
+		var echart = new Echart("echart_demo", "echart_demo");
+		echart.setTitleName("Echart Demo");
+		echart.setLegendData([ '销量' ]);
+		//echart.setSingleXAxisData(["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]);
+		echart.setMultiXAxis({
+			data : [ "衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子" ]
+		});
+		echart.setData([ {
+
+			name : '销量',
+			type : 'bar',
+			data : [ 5, 20, 36, 10, 10, 20 ],
+			itemStyle : {
+				normal : {
+
+					label : {
+						show : true,
+						position : 'top'
+					}
+				}
+			},
+
+		} ]);
+
+		echart.show();
+		let text = new echarts.graphic.Text({
+			style : {
+				x : echart.canvasWidth() / 2,
+				y : echart.canvasHeight() / 2,
+				color : '#666',
+				text : '自定义echart图形,利用底层的zrender',
+				textAlign : 'center',
+				textFont : 'bold 20px verdana'
+			}
+		});
+		echart.add(text);
+		echart.remove(text);
+	</script>
 </body>
 </html>

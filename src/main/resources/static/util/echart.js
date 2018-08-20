@@ -21,6 +21,7 @@ class Echart{
 		this.chart = echarts.init(DomUtil.domById(this.divId));
 		this.initDefaultOption();
 		Echart.add(this.name,this);
+		this.temp = new Map;
 	}
 	
 	initDefaultOption(){
@@ -105,7 +106,7 @@ class Echart{
 		return $.extend(this.option,param);
 	}
 	
-	width(w){
+	domWidth(w){
 		if(!!w){
 			if(TypeUtil.isNumeric(w))this.$dom.css("width",w+"px");
 			if(TypeUtil.isString(w))this.$dom.css("width",w);
@@ -113,7 +114,7 @@ class Echart{
 		}
 		return this.$dom.css("width");
 	}
-	height(h){
+	domHeight(h){
 		if(!!h){
 			if(TypeUtil.isNumeric(h))this.$dom.css("height",h+"px");
 			if(TypeUtil.isString(h))this.$dom.css("height",h);
@@ -121,9 +122,40 @@ class Echart{
 		}
 		return this.$dom.css("height");
 	}
-	
+	canvasWidth(){
+		return this.chart.getWidth();
+	}
+	canvasHeight(){
+		return this.chart.getHeight();
+	}
 	resize(opt){
 		this.chart.resize(opt);
+	}
+	
+	clear(){
+		this.chart.clear();
+	}
+	destroy(){
+		if(!this.chart.isDisposed()){
+			this.chart.dispose();
+			Echart.remove(this.name);
+		}
+		
+	}
+	dom(){
+		return this.chart.getDom();
+	}
+	render(){
+		return this.chart.getZr();
+	}
+	add(graph){
+		this.render().add(graph);
+	}
+	remove(graph){
+		this.render().remove(graph);
+	}
+	canvas(){
+		return this.chart.getRenderedCanvas();
 	}
 	
 	static checkNameExists(name){
@@ -138,7 +170,7 @@ class Echart{
 		return Echart.ALL_ECHARTS.set(n,v);
 	}
 	static remove(n){
-		return Echart.ALL_ECHARTS.delete(a);
+		return Echart.ALL_ECHARTS.delete(n);
 	}
 	static clear(){
 		return Echart.ALL_ECHARTS.clear();
