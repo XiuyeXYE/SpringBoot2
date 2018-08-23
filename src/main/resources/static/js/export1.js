@@ -3,3 +3,8 @@ export function hello(){
 }
 
 $("#text").append("<h1 style='color:green;'>Hello World!This is javascript module!</h1>")
+
+export function test1(){
+	console.log("test1");
+}
+
