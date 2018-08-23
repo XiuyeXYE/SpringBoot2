@@ -74,4 +74,9 @@ public class HelloHtmlController {
 		return "echart";
 	}
 	
+	@GetMapping("module")
+	public String module() {
+		return "module";
+	}
+	
 }
