@@ -43,5 +43,33 @@ loadWebAssembly('js/main.wasm')
   })
 
 </script>
+<script type="text/javascript">
+	
+	let interface1 = Base => class extends Base{
+		f1(){console.log("interface1");}
+	};
+	let interface2 = Base => class extends Base{
+		f2(){console.log("interface2");}
+	};
+	let interface3 = Base => class extends Base{
+		f3(){console.log("interface3");}
+	};
+	//
+	class AbstractClass{
+		f(){
+			console.log("AbstractClass");
+		}
+	}
+	
+	class Derived extends interface1(interface2(interface3(AbstractClass))){
+		
+	}
+	
+	let d = new Derived;
+	d.f1();
+	d.f2();
+	d.f3();
+	d.f();
+</script>
 </body>
 </html>
