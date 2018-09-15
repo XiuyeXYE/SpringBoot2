@@ -23,7 +23,32 @@ class Echart{
 		Echart.add(this.name,this);
 		this.temp = new Map;
 	}
-	
+	openXAxisTrigger(b=true){
+		this.option.xAxis.triggerEvent = b;
+	}
+	setCustomData(k,v){
+		this.temp.set(k,v);
+	}
+	deleteCustomData(k){
+		this.temp.delete(k);
+	}
+	getCustomData(k){
+		this.temp.get(k);
+	}
+	off(e,h){
+		this.chart.off(e,h);
+	}
+	on(e,h){
+		this.chart.on(e,h);
+	}
+	divAttr(k,v){
+		if(typeof k === 'string' && typeof v === 'string'){
+			this.$dom.attr(k,v);
+		}
+		else if(typeof k === 'string' && typeof v != 'string'){
+			return this.$dom.attr(k);
+		}
+	}
 	initDefaultOption(){
 		this.option={
 		            tooltip: {
@@ -44,53 +69,60 @@ class Echart{
 		};
 	}
 	setTitleName(n){
-		return this.set({
-			 title: {
-	                text:n, 
-	         }
-		});
+		this.option.title.text = n;
+//		return this.set({
+//			 title: {
+//	                text:n, 
+//	         }
+//		});
 	}
 	setLegendData(lData){
 		if(!Array.isArray(lData)){
 			throw "legend data must be array!";
 		}
-		return this.set({
-			 legend: {
-	                data:lData,
-	          },
-		});
+		this.option.legend.data = lData;
+//		return this.set({
+//			 legend: {
+//	                data:lData,
+//	          },
+//		});
 	}
 	setSingleXAxisData(xData){
 		if(!Array.isArray(xData)){
 			throw "xAxis data must be array!";
 		}
-		return this.set({
-			 xAxis: {
-	                data: xData,
-	          },
-		});
+		this.option.xAxis.data = xData;
+//		return this.set({
+//			 xAxis: {
+//	                data: xData,
+//	          },
+//		});
 	}
 	setSingleYAxisType(t){
-		return this.set({
-			yAxis: {
-				type:t,
-			},
-		});
+		this.option.yAxis.type = t; 
+//		return this.set({
+//			yAxis: {
+//				type:t,
+//			},
+//		});
 	}
 	setData(d){
-		return this.set({
-			 series: d,
-		});
+		this.option.series = d;
+//		return this.set({
+//			 series: d,
+//		});
 	}
 	setMultiXAxis(xAxis){
-		return this.set({
-			xAxis:xAxis,
-		});
+		this.option.xAxis = xAxis;
+//		return this.set({
+//			xAxis:xAxis,
+//		});
 	}
 	setMultiYAxis(yAxis){
-		return this.set({
-			yAxis:yAxis,
-		});
+		this.option.yAxis = yAxis;
+//		return this.set({
+//			yAxis:yAxis,
+//		});
 	}
 	setSeriesData(i,n,d){
 		this.option.series[i].name = n;
@@ -99,6 +131,7 @@ class Echart{
 	show(notMerge=true, lazyUpdate=false){
 		this.chart.setOption(this.option,notMerge, lazyUpdate);
 	}
+	//deprecated
 	set(param){
 		if(!param){
 			return this.option; 
