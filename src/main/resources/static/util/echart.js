@@ -24,6 +24,7 @@ class Echart{
 		this.temp = new Map;
 	}
 	openXAxisTrigger(b=true){
+		if(!this.option.xAxis)throw "xAxis is not existing and initialized"
 		this.option.xAxis.triggerEvent = b;
 	}
 	setCustomData(k,v){
@@ -55,6 +56,7 @@ class Echart{
 		            	show:true,
 		            	trigger: 'axis',
 		            },
+		            legend:{},
 		            xAxis :{
 	                    type : 'category',
 	                    axisLabel : {
@@ -69,7 +71,9 @@ class Echart{
 		};
 	}
 	setTitleName(n){
-		this.option.title.text = n;
+		this.option.title={
+				text:n
+		}
 //		return this.set({
 //			 title: {
 //	                text:n, 
