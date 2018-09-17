@@ -116,6 +116,26 @@ class Echart{
 //			 series: d,
 //		});
 	}
+	isEmpty(){
+		
+		if(!this.option.series){
+			return true;
+		}
+		if(!!this.option.series && !!this.option.series.length && this.option.series.length == 0){
+			return true;
+		}
+		if(!!this.option.series && !!this.option.series.length && this.option.series.length > 0){
+			for(let sery in this.option.series){
+				if(!!sery 
+				&& !!sery.data
+				&& !!sery.data.length
+				&& sery.length>0){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 	setMultiXAxis(xAxis){
 		this.option.xAxis = xAxis;
 //		return this.set({
