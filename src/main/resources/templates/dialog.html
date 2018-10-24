@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link href="3rdFrwk/sweetalert/sweetalert2.css" rel="stylesheet">
+</head>
+<body>
+
+	<button id='sweetalert_hello'>Sweetalert-hello</button>
+	<button id='sweetalert_success'>Sweetalert-success</button>
+	<script type="text/javascript"
+		src="3rdFrwk/sweetalert/sweetalert2.all.js"></script>
+
+	<script type="text/javascript">
+	
+	window.addEventListener("DOMContentLoaded",(e)=>{
+		sweetalert_hello.onclick=()=>{
+			swal('Hello World!');
+		};
+		sweetalert_success.onclick=()=>{
+			swal(
+					  'Good job!',
+					  'You clicked the button!',
+					  'success'
+			);
+		};
+		
+	});
+	
+		
+		
+		
+	</script>
+
+</body>
+</html>
