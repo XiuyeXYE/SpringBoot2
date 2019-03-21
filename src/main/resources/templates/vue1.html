@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div id="vue1">
+		<p>{{msg}}</p>
+		<p>{{func}}</p>
+	</div>
+
+	<script type="text/javascript" src="3rdFrwk/vue/vue.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el : "#vue1",
+			data : {
+				msg : "Hello Vue",
+			},
+			computed : {
+				func : function() {
+					return this.msg;
+				}
+			}
+
+		});
+	</script>
+	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script
+		src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<!-- <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script type="text/babel">
+		const b = <div>hello</div>
+		console.log(b);
+	    alert(b);
+		function square(n: number): number {
+  			return n * n;
+		}
+	</script>
+
+</body>
+</html>

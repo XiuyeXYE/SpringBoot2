@@ -86,4 +86,9 @@ public class HelloHtmlController {
 		return "dialog";
 	}
 	
+	@RequestMapping("vue1")
+	public String vue1() {
+		return "vue1";
+	}
+	
 }
