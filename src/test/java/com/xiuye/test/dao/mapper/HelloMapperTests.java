@@ -30,9 +30,9 @@ public class HelloMapperTests {
 		
 		TimeUtil.start();
 		LogUtil.log(this.helloMapper.allHellos());
-		TimeUtil.outCostOnConsoleMs();
+		TimeUtil.outByMS();
 		LogUtil.log(this.helloMapper.findAll());
-		TimeUtil.outCostOnConsoleMs();
+		TimeUtil.outByMS();
 	}
 	
 }

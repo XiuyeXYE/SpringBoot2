@@ -28,7 +28,7 @@ public class HelloServiceTests {
 		Hello h = new Hello();
 		h.setMsg("Rollback not successful! 23");
 		this.hs.insertException(h);
-		TimeUtil.outCostOnConsoleMs();
+		TimeUtil.outByMS();
 		
 	}
 	@Test
@@ -38,7 +38,7 @@ public class HelloServiceTests {
 		Hello h = new Hello();
 		h.setMsg("insert successful!"+Math.random());
 		this.hs.insert(h);
-		TimeUtil.outCostOnConsoleMs();
+		TimeUtil.outByMS();
 		
 	}
 	
